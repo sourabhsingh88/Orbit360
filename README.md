@@ -338,7 +338,12 @@ User ko timely information dena.
 ---
 
 **This README defines the complete execution roadmap of the Appointment Management System from foundation to microservices.**
-
+user-service
+├── controller
+├── service
+├── repository
+├── entity
+└── dto
 
 
 
