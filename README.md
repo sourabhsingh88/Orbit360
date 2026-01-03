@@ -1,350 +1,258 @@
-# Appointment Management System
-## Step-by-Step Microservices Execution Plan
+# # 📅 Appointment Management System
+
+A centralized platform to manage appointments for **salons, doctors, hotels, and consultants**.  
+Designed to scale logically: **monolith first, microservices later**.
 
 ---
 
-## 0. Big Picture (Pehle Ye Clear Karo)
-
-### Goal
-Ek **centralized platform** banana jahan user ek hi system se book kar sake:
-
-- Salon
-- Doctor
-- Hotel
-- Consultant
-
-### Approach
-- Pehle **Monolith** (stable foundation)
-- Phir **Microservices** me split
-- Har service ka **clear responsibility**
+## 📘 Project Development & Usage Guide
 
 ---
 
-## Total Execution Plan (High Level)
+## 🧩 1. Project Overview
 
-Step 0 → Base Setup (DONE)
-Step 1 → Auth Service
-Step 2 → User & Provider Service
-Step 3 → Service Catalog
-Step 4 → Availability & Slot Service
-Step 5 → Booking Service
-Step 6 → Payment Service
-Step 7 → Notification Service
-Step 8 → Gateway + Microservice Split
+### 🎯 What This Project Is
 
+A **single booking platform** that supports multiple domains:
 
+- ✂️ Salons
+- 🩺 Doctors
+- 🏨 Hotels
+- 🧑‍💼 Consultants
 
----
+The system is **intentionally built as a monolith first** and later split into microservices.
 
-## STEP 0: Base Setup (CURRENT STATE)
-
-### Kya Ho Chuka Hai
-- Spring Boot app start ho raha hai
-- MySQL connected
-- JPA working
-- Maven stable
-
-### Outcome
-- ✔ Foundation ready
-- ✔ Infra issues khatam
-- ✔ Ab focus sirf business logic pe
+> Premature microservices increase complexity and slow execution.  
+> Stability comes before scalability.
 
 ---
 
-## STEP 1: AUTH SERVICE (PHASE 1)
+## 🛠️ 2. Tech Stack (Locked)
 
-### Purpose (Is service ka kaam)
-Auth service ka **sirf ek kaam**:
+This stack is fixed to avoid decision churn.
 
-> “Kaun user hai, kaunsa role hai, aur token valid hai ya nahi”
+- **Backend:** Spring Boot
+- **Database:** MySQL
+- **ORM:** JPA / Hibernate
+- **Build Tool:** Maven
+- **Authentication:** JWT
+- **API Testing:** Postman
 
-- No booking logic
-- No business logic
-- No overengineering
-
----
-
-### Phase 1 Scope (Clear Boundary)
-
-Auth Service handle karega:
-- User signup
-- User login
-- Roles:
-    - USER
-    - PROVIDER
-    - ADMIN
-- Password hashing
-- JWT token generation
+No experiments. No unnecessary tools.
 
 ---
 
-### Phase 1 Entity
+## ⚙️ 3. One-Time Setup Guide
 
-#### User
-id
-name
-email
-password
-role
-created_at
+### ✅ Prerequisites
 
+Ensure the following are installed and running:
 
----
-
-### Phase 1 APIs
-
-POST /auth/register
-POST /auth/login
-GET /auth/me
-
-
+- ☕ Java 17 or higher
+- 📦 Maven
+- 🗄️ MySQL Server
 
 ---
 
-### Phase 1 Steps (Exact Order)
+### 🚀 Setup Steps
 
-- **Step 1.1** → Create `User` entity
-- **Step 1.2** → Create `UserRepository`
-- **Step 1.3** → Create `AuthController`
-- **Step 1.4** → Add password hashing (BCrypt)
-- **Step 1.5** → Generate JWT token
-- **Step 1.6** → Test APIs using Postman
+#### 1️⃣ Clone the Repository
+```bash
+git clone <repository-url>
 
----
+```
+#### 2️⃣ Create MySQL DB
+```sql
+appointment_db
+```
 
-### Phase 1 Outcome
+#### 3️⃣ Update application.yml
+```ymal
 
-- ✔ Secure login system
-- ✔ Token-based authentication ready
-- ✔ Ye service future me **independent microservice** ban sakti hai
+spring.datasource.url
+spring.datasource.username
+spring.datasource.password
+```
+Configure according to your local MySQL setup.
+#### 4️⃣ Run:
+```arduino
+mvn clean install
+mvn spring-boot:run
 
----
+```
 
-## STEP 2: USER & PROVIDER SERVICE (PHASE 2)
+#### 5️⃣ Access the Application:
+```arduino
+http://localhost:8080
+```
 
-### Purpose
-- Auth bata dega **kaun hai**
-- Ye phase batayega **wo kya karta hai**
+## ⚠️ Important Rule
 
----
+If the application does **not start**:
 
-### Phase 2 Services
+- 🔧 Fix infrastructure issues first
 
-#### User Service
-- User profile details
-- Booking history (later phase)
+- 🚫 Do not touch business logic
 
-#### Provider Service
-- Salon / Clinic / Hotel registration
-- Business details
-- Verification status
+- 🧱 Stability comes before features
 
----
+## 🧭 Development Rulebook
 
-### Phase 2 Entity
+- 🧱 Monolith first
 
-#### Provider
-id
-business_name
-service_type (SALON / DOCTOR / HOTEL)
-address
-status
+- 🚫 No skipping steps
 
+- 🛑 No premature microservices
 
----
+- 🚀 Working system > perfect design
+# 📅 Appointment Management System
 
-### Phase 2 APIs
-
-POST /providers
-GET /providers/{id}
-GET /providers
-
+A centralized system to manage appointments for **salons, doctors, hotels, and consultants**.  
+Built **step-by-step**, starting simple and evolving into microservices.
 
 ---
 
-### Phase 2 Outcome
+## 🧭 Project Development Roadmap
 
-- ✔ Users aur Providers clearly separated
-- ✔ Multiple businesses possible
-- ✔ Booking system ke liye strong base
-
----
-
-## STEP 3: SERVICE CATALOG (PHASE 3)
-
-### Purpose
-Provider kya-kya services deta hai?
-
-**Examples:**
-- Salon → Haircut, Facial
-- Doctor → Cardiology, Ortho
-- Hotel → Deluxe Room
+This README focuses **only on what to build and in what order**.  
+No APIs. No internal theory. Pure execution plan.
 
 ---
 
-### Core Idea
-- Hardcoding ❌
-- **Config-driven design** ✅
+## 🚀 STEP 0: Foundation Setup
+
+### ✅ What to Do
+- Initialize Spring Boot project
+- Configure MySQL connection
+- Enable JPA/Hibernate
+- Run the application successfully
+
+### 🎯 Exit Criteria
+- Application starts without errors
+- Database connection is stable
 
 ---
 
-### Entity
+## 🔐 STEP 1: Authentication Module
 
-#### Service
-id
-provider_id
-service_name
-duration
-price
-metadata (JSON)
+### ✅ What to Do
+- Implement user signup
+- Implement secure login
+- Add role support (User / Provider / Admin)
+- Secure application using token-based authentication
 
-
-
----
-
-### Outcome
-
-- ✔ System multi-domain ban jata hai
-- ✔ Salon / Doctor / Hotel ek hi booking engine use karte hain
+### 🎯 Exit Criteria
+- Users can authenticate securely
+- User identity is available across the system
 
 ---
 
-## STEP 4: AVAILABILITY & SLOT SERVICE (PHASE 4)
+## 👥 STEP 2: User & Provider Management
 
-### Purpose
-> “Kaunsa slot free hai?”
+### ✅ What to Do
+- Manage user profiles
+- Allow businesses (salon, doctor, hotel) to register
+- Store and manage business details
+- Track provider status (active / inactive)
 
-Ye **sabse critical phase** hai.
-
----
-
-### Rules
-- Salon → duration-based slots
-- Doctor → fixed time slots
-- Hotel → date-range booking
+### 🎯 Exit Criteria
+- System knows **who the user is**
+- System knows **what business they manage**
 
 ---
 
-### Entity
+## 🛠️ STEP 3: Service Definition
 
-#### Availability
-provider_id
-date
-slot_start
-slot_end
+### ✅ What to Do
+- Allow providers to define their services
+- Configure service duration and pricing
+- Keep service setup flexible (not hardcoded)
 
-
-
----
-
-### Outcome
-- ✔ Double booking avoid hoti hai
-- ✔ Real-world scheduling logic implement hoti hai
+### 🎯 Exit Criteria
+- System understands **what can be booked**
 
 ---
 
-## STEP 5: BOOKING SERVICE (PHASE 5)
+## 🗓️ STEP 4: Availability & Scheduling
 
-### Purpose
-Actual booking ka complete lifecycle handle karna.
+### ✅ What to Do
+- Manage provider availability
+- Define time slots or date ranges
+- Prevent overlapping schedules
 
----
+### 🎯 Exit Criteria
+- System knows **when a service is available**
+- Double booking is eliminated
 
-### Booking States
-CREATED → CONFIRMED → COMPLETED
-→ CANCELLED
-
-
----
-
-### Entity
-
-#### Booking
-id
-user_id
-service_id
-time_range
-status
-
-
+⚠️ This step defines system quality. Build carefully.
 
 ---
 
-### Outcome
-- ✔ End-to-end booking flow working
-- ✔ Business logic centralized
+## 📦 STEP 5: Booking Flow
+
+### ✅ What to Do
+- Implement booking creation
+- Manage booking lifecycle (confirm, cancel, complete)
+- Track booking status changes
+
+### 🎯 Exit Criteria
+- End-to-end booking flow works smoothly
 
 ---
 
-## STEP 6: PAYMENT SERVICE (PHASE 6)
+## 💳 STEP 6: Payments
 
-### Purpose
-Payment aur money handling.
+### ✅ What to Do
+- Handle payment logic
+- Link payments with bookings
+- Track payment state
 
----
-
-### Rules
-- Booking Service direct payment gateway ko call nahi karega
-- Payment ek **separate service** hogi
-
----
-
-### Outcome
-- ✔ Secure payments
-- ✔ Refund handling easy aur isolated
+### 🎯 Exit Criteria
+- Bookings can be paid securely
+- Payment logic remains isolated
 
 ---
 
-## STEP 7: NOTIFICATION SERVICE (PHASE 7)
+## 🔔 STEP 7: Notifications
 
-### Purpose
-User ko timely information dena.
+### ✅ What to Do
+- Send booking confirmations
+- Send reminders
+- Notify on cancellations
 
-- Booking confirmation
-- Reminder
-- Cancellation updates
-
----
-
-### Tech (Later)
-- Event-based communication (Kafka / async events)
+### 🎯 Exit Criteria
+- Users receive timely updates
 
 ---
 
-## STEP 8: MICRO SERVICES SPLIT (FINAL STEP)
+## 🧩 STEP 8: Microservices Split
 
-### Ab Tak Kya Hai
-- Working monolith
-- Clear domain boundaries
-- Stable business logic
+### ✅ What to Do
+- Identify clear module boundaries
+- Split authentication, booking, and payment into separate services
+- Introduce API gateway if required
 
----
+### 🎯 Exit Criteria
+- System works exactly the same after splitting
 
-### Ab Kya Karege
-- Auth → separate microservice
-- Booking → separate microservice
-- Payment → separate microservice
-- API Gateway introduce karna
+⚠️ Do this **only when everything is stable**.
 
 ---
 
-## Final Summary (Straight Talk)  ````````````````````````````
+## 📌 Development Rules (Non-Negotiable)
 
-- Pehle **monolith** banana → correct decision
-- Phir **microservices** me split → correct timing
-- Har phase ka **clear output** defined hai
-- Koi bhi step skip nahi kiya jayega
+- 🧱 Build monolith first
+- 🧪 Stabilize before moving ahead
+- 🚫 No skipping steps
+- 🛑 No premature microservices
+- 🚀 Working system > perfect design
 
 ---
 
-**This README defines the complete execution roadmap of the Appointment Management System from foundation to microservices.**
-user-service
-├── controller
-├── service
-├── repository
-├── entity
-└── dto
+## 🏁 Final Note
 
+This project is **execution-driven**, not academic.  
+Follow the steps in order.  
+If one step breaks, the next step is meaningless.
 
-
-
+**Build → Stabilize → Scale**
