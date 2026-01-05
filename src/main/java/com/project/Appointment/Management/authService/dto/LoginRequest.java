@@ -1,4 +1,4 @@
-package com.project.Appointment.Management.auth.dto;
+package com.project.Appointment.Management.authService.dto;
 
 
 import lombok.Data;

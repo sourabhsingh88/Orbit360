@@ -1,4 +1,4 @@
-package com.project.Appointment.Management.auth.entity;
+package com.project.Appointment.Management.authService.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

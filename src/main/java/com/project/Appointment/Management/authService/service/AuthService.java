@@ -1,10 +1,10 @@
-package com.project.Appointment.Management.auth.service;
+package com.project.Appointment.Management.authService.service;
 
 
-import com.project.Appointment.Management.auth.dto.*;
-import com.project.Appointment.Management.auth.entity.Role;
-import com.project.Appointment.Management.auth.entity.User;
-import com.project.Appointment.Management.auth.repository.UserRepository;
+import com.project.Appointment.Management.authService.dto.*;
+import com.project.Appointment.Management.authService.entity.Role;
+import com.project.Appointment.Management.authService.entity.User;
+import com.project.Appointment.Management.authService.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

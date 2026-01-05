@@ -1,6 +1,6 @@
-package com.project.Appointment.Management.auth.repository;
+package com.project.Appointment.Management.authService.repository;
 
-import com.project.Appointment.Management.auth.entity.User;
+import com.project.Appointment.Management.authService.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
