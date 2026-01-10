@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Welcome {
     @GetMapping("/")
     public  String welCome() {
-        return "Welcome to Appointment Management System Stay Conntected thank you"  ;
+        return "Welcome to Appointment Management System"  ;
     }
 }
