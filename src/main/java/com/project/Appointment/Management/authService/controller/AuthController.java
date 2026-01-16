@@ -1,9 +1,8 @@
-package com.project.Appointment.Management.auth.controller;
+package com.project.Appointment.Management.authService.controller;
 
 
-import com.project.Appointment.Management.auth.dto.*;
-import com.project.Appointment.Management.auth.service.AuthService;
-import lombok.RequiredArgsConstructor;
+import com.project.Appointment.Management.authService.dto.*;
+import com.project.Appointment.Management.authService.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

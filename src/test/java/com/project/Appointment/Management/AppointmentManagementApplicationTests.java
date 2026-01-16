@@ -9,5 +9,4 @@ class AppointmentManagementApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.project.Appointment.Management.auth.config;
+package com.project.Appointment.Management.authService.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
